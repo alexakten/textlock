@@ -40,7 +40,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="w-full h-full tracking-tight col-span-1 border-l border-zinc-500 flex items-center justify-center">
+      <section className="w-full h-full tracking-tight col-span-1 sm:border-l border-zinc-500 flex items-center justify-center">
         <div className="flex relative rounded-[3rem] z-10 border-zinc-500 flex-col items-center border w-[348px] h-[720px]">
           <p className="text-xl pt-16 text-white">Wednesday, 6 March</p>
           <p className="text-7xl pt-1 text-white">12:40</p>
