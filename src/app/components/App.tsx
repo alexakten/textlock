@@ -51,7 +51,7 @@ export default function App() {
           ref={quoteRef}
           className="flex absolute items-center justify-center w-[348px] h-[720px]"
         >
-          <p className="text-white text-center max-w-xs">
+          <p className="text-white font-medium text-center max-w-xs">
             {text || "Enter text in the input field"}
           </p>
         </div>
