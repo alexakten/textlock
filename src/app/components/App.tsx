@@ -24,8 +24,8 @@ export default function App() {
   };
 
   return (
-    <main className="h-screen w-full grid grid-cols-2 bg-zinc-950">
-      <section className="w-full flex flex-col justify-center p-8 h-full">
+    <main className="h-auto sm:h-screen w-full grid grid-cols-1 sm:grid-cols-2 bg-zinc-950">
+      <section className="w-full flex flex-col justify-center items-start p-8 h-full">
         <div className="flex flex-col gap-2">
           <p className="text-white">Text</p>
           <input
