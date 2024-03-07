@@ -68,10 +68,17 @@ export default function App() {
       }).then((canvas) => {
         canvas.toBlob(function (blob) {
           if (blob) {
-            // Check if blob is not null
             const url = URL.createObjectURL(blob);
-            window.open(url);
-            // No need to revoke the URL as the document in the new tab will handle it
+            const a = document.createElement("a");
+            a.style.display = "none";
+            a.href = url;
+            a.download = "quote-wallpaper.png"; // You can specify a filename for the download here
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
           }
         });
       });
