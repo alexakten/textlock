@@ -66,14 +66,21 @@ export default function App() {
         logging: true, // Enable for debug information in the console
         useCORS: true, // This can help with images from different origins
       }).then((canvas) => {
+        // Explicitly setting the MIME type to 'image/png'
         const base64image = canvas.toDataURL("image/png");
         const link = document.createElement("a");
         link.download = "quote-wallpaper.png";
+        // Set the href attribute to the base64 image URL
         link.href = base64image;
-        link.click();
+        
+        // Create a click event and dispatch it for the link
+        // This ensures compatibility across more browsers/devices
+        const event = new MouseEvent('click');
+        link.dispatchEvent(event);
       });
     }
   };
+  
 
   /* -------------------------------------------------------------------------- 
   /*                            Date and Time Section                           
@@ -128,7 +135,7 @@ export default function App() {
           </div>
           {/* Text size */}
           <div className="flex flex-col gap-2">
-            <p className="text-white">Font Size</p>
+            <p className="text-white">Font size</p>
             <div className="flex items-center gap-2">
               <button
                 className="rounded-md bg-zinc-100 hover:bg-zinc-300 text-black px-4 py-2"
