@@ -61,7 +61,7 @@ export default function App() {
   const takeScreenshot = () => {
     if (quoteRef.current) {
       html2canvas(quoteRef.current, {
-        scale: 10,
+        scale: 15,
         backgroundColor: backgroundColor,
         logging: true,
         useCORS: true,
