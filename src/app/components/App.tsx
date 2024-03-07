@@ -66,18 +66,23 @@ export default function App() {
         logging: true,
         useCORS: true,
       }).then((canvas) => {
-        canvas.toBlob(function (blob) {
-          if (blob) {
-            const url = URL.createObjectURL(blob);
-            // Open the blob URL in a new tab
-            window.open(url, "_blank");
-            // No need for a hidden anchor tag or download attribute
-            // Note: Cleanup is tricky here since the blob needs to be accessible in the new tab
-          }
-        });
+        // For iOS, use data URL instead of blob URL
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          const dataUrl = canvas.toDataURL('image/png');
+          window.open(dataUrl, '_blank');
+        } else {
+          // For non-iOS devices, continue using blob URL
+          canvas.toBlob(function (blob) {
+            if (blob) {
+              const url = URL.createObjectURL(blob);
+              window.open(url, '_blank');
+            }
+          }, 'image/png');
+        }
       });
     }
   };
+  
 
   /* -------------------------------------------------------------------------- 
   /*                            Date and Time Section                           
