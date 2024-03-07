@@ -61,26 +61,22 @@ export default function App() {
   const takeScreenshot = () => {
     if (quoteRef.current) {
       html2canvas(quoteRef.current, {
-        scale: 10, // Adjust scale as needed
+        scale: 10,
         backgroundColor: backgroundColor,
-        logging: true, // Enable for debug information in the console
-        useCORS: true, // This can help with images from different origins
+        logging: true,
+        useCORS: true,
       }).then((canvas) => {
-        // Explicitly setting the MIME type to 'image/png'
-        const base64image = canvas.toDataURL("image/png");
-        const link = document.createElement("a");
-        link.download = "quote-wallpaper.png";
-        // Set the href attribute to the base64 image URL
-        link.href = base64image;
-        
-        // Create a click event and dispatch it for the link
-        // This ensures compatibility across more browsers/devices
-        const event = new MouseEvent('click');
-        link.dispatchEvent(event);
+        canvas.toBlob(function (blob) {
+          if (blob) {
+            // Check if blob is not null
+            const url = URL.createObjectURL(blob);
+            window.open(url);
+            // No need to revoke the URL as the document in the new tab will handle it
+          }
+        });
       });
     }
   };
-  
 
   /* -------------------------------------------------------------------------- 
   /*                            Date and Time Section                           
