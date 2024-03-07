@@ -66,23 +66,25 @@ export default function App() {
         logging: true,
         useCORS: true,
       }).then((canvas) => {
-        // For iOS, use data URL instead of blob URL
+        // For iOS, create an HTML page with the image embedded
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          const dataUrl = canvas.toDataURL('image/png');
-          window.open(dataUrl, '_blank');
+          const dataUrl = canvas.toDataURL("image/png");
+          const html = `<html><body><img src="${dataUrl}"></body></html>`;
+          const blob = new Blob([html], { type: "text/html" });
+          const url = URL.createObjectURL(blob);
+          window.open(url, "_blank");
         } else {
           // For non-iOS devices, continue using blob URL
           canvas.toBlob(function (blob) {
             if (blob) {
               const url = URL.createObjectURL(blob);
-              window.open(url, '_blank');
+              window.open(url, "_blank");
             }
-          }, 'image/png');
+          }, "image/png");
         }
       });
     }
   };
-  
 
   /* -------------------------------------------------------------------------- 
   /*                            Date and Time Section                           
