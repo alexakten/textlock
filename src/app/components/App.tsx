@@ -4,7 +4,7 @@ import html2canvas from "html2canvas";
 
 export default function App() {
   // Initialize state with localStorage values or defaults
-  const [text, setText] = useState(localStorage.getItem("text") || "");
+  const [text, setText] = useState("");
   const [textSize, setTextSize] = useState("16px");
   const textColors = [
     "#9F8A6C",
@@ -16,9 +16,7 @@ export default function App() {
     "#E1E2D7",
     "#F7F7F7",
   ];
-
-  const [textColor, setTextColor] = useState(textColors[0]);
-
+  const [textColor, setTextColor] = useState("");
   const backgroundColors = [
     "#9F8A6C",
     "#9F9E91",
@@ -29,16 +27,35 @@ export default function App() {
     "#E1E2D7",
     "#F7F7F7",
   ];
-
-  const [backgroundColor, setBackgroundColor] = useState(backgroundColors[0]);
-
+  const [backgroundColor, setBackgroundColor] = useState("");
   const quoteRef = useRef(null);
+
+  // Initialize state from localStorage and default values
+  useEffect(() => {
+    const storedText =
+      typeof window !== "undefined" ? localStorage.getItem("text") : "";
+    setText(storedText || "");
+
+    const storedBgColor =
+      typeof window !== "undefined"
+        ? localStorage.getItem("backgroundColor")
+        : backgroundColors[0];
+    setBackgroundColor(storedBgColor || backgroundColors[0]);
+
+    const storedTextColor =
+      typeof window !== "undefined"
+        ? localStorage.getItem("textColor")
+        : textColors[0];
+    setTextColor(storedTextColor || textColors[0]);
+  }, []); // Empty dependency array ensures this effect only runs once on mount
 
   // Save text and colors to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem("text", text);
-    localStorage.setItem("backgroundColor", backgroundColor);
-    localStorage.setItem("textColor", textColor);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("text", text);
+      localStorage.setItem("backgroundColor", backgroundColor);
+      localStorage.setItem("textColor", textColor);
+    }
   }, [text, backgroundColor, textColor]);
 
   const takeScreenshot = () => {
