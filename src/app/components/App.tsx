@@ -69,16 +69,10 @@ export default function App() {
         canvas.toBlob(function (blob) {
           if (blob) {
             const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.style.display = "none";
-            a.href = url;
-            a.download = "quote-wallpaper.png"; // You can specify a filename for the download here
-            document.body.appendChild(a);
-            a.click();
-
-            // Clean up
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
+            // Open the blob URL in a new tab
+            window.open(url, "_blank");
+            // No need for a hidden anchor tag or download attribute
+            // Note: Cleanup is tricky here since the blob needs to be accessible in the new tab
           }
         });
       });
