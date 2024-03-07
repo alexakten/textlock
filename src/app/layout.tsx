@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Textlock",
-  description: "Text on your lockscreen",
+  description: "Text on your",
 };
 
 export default function RootLayout({
@@ -16,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
 }
+
+// className={GeistSans.className}
