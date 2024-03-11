@@ -7,6 +7,7 @@ export default function App() {
   const [text, setText] = useState("");
   const [textSize, setTextSize] = useState("16px");
   const textColors = [
+    "#F7F7F7",
     "#9F8A6C",
     "#9F9E91",
     "#506066",
@@ -14,14 +15,13 @@ export default function App() {
     "#404447",
     "#4D7C5A",
     "#E1E2D7",
-    "#F7F7F7",
   ];
   const [textColor, setTextColor] = useState("");
   const backgroundColors = [
+    "#000000",
     "#9F8A6C",
     "#9F9E91",
     "#506066",
-    "#131313",
     "#404447",
     "#4D7C5A",
     "#E1E2D7",
@@ -70,7 +70,7 @@ export default function App() {
           if (blob) {
             const url = URL.createObjectURL(blob);
             // Open the blob URL in a new tab
-            window.open(url, '_blank');
+            window.open(url, "_blank");
             // No need for a hidden anchor tag or download attribute
             // Note: Cleanup is tricky here since the blob needs to be accessible in the new tab
           }
@@ -78,7 +78,6 @@ export default function App() {
       });
     }
   };
-  
 
   /* -------------------------------------------------------------------------- 
   /*                            Date and Time Section                           
@@ -217,7 +216,7 @@ export default function App() {
           className="flex absolute items-center justify-center w-[348px] h-[720px]"
           style={{ color: textColor, fontSize: textSize }}
         >
-          <p className="font-semibold text-center max-w-xs">
+          <p className="font-[600] tracking-normal text-center max-w-xs">
             {text || "Enter text in the input field"}
           </p>
         </div>
