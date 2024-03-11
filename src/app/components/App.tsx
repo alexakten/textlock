@@ -119,7 +119,7 @@ export default function App() {
       {/* /* -------------------------------------------------------------------------- 
   /*                                  Settings                          
   /* -------------------------------------------------------------------------- */}
-      <section className="w-full flex flex-col justify-center items-start p-8 h-full">
+      <section className="w-full flex flex-col justify-center items-center p-8 h-full">
         <div className="flex flex-col gap-8">
           {/* Text input */}
           <div className="flex flex-col gap-2´">
