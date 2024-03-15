@@ -6,48 +6,56 @@ export default function App() {
   // Initialize state with localStorage values or defaults
   const [text, setText] = useState("");
   const [textSize, setTextSize] = useState("16px");
+  // const textColors = [
+  //   "#F7F7F7",
+  //   "#9F8A6C",
+  //   "#9F9E91",
+  //   "#506066",
+  //   "#131313",
+  //   "#404447",
+  //   "#4D7C5A",
+  //   "#E1E2D7",
+  // ];
   const textColors = [
-    "#F7F7F7",
-    "#9F8A6C",
-    "#9F9E91",
-    "#506066",
-    "#131313",
-    "#404447",
-    "#4D7C5A",
-    "#E1E2D7",
+    "#F7F7F7", // White
+    "#647A87", // Muted Blue
+    "#6A8D73", // Muted Green
+    "#9E5A5A", // Muted Red
+    "#C07D59", // Muted Orange
+    "#B0A990", // Muted Khaki
+    "#7D6E83", // Muted Purple
+    "#5E7781", // Muted Teal
+    "#AB7E58", // Muted Bronze
+    "#9A7462", // Muted Brown
   ];
   const [textColor, setTextColor] = useState("");
   const backgroundColors = [
-    "#000000",
-    "#9F8A6C",
-    "#9F9E91",
-    "#506066",
-    "#404447",
-    "#4D7C5A",
-    "#E1E2D7",
-    "#F7F7F7",
+    "#000000", // Black
+    "#3E5F73", // Muted Navy Blue
+    "#4F665D", // Muted Forest Green
+    "#7E5A5A", // Muted Maroon
+    "#BF8040", // Muted Burnt Orange
+    "#9C9F72", // Muted Olive Khaki
+    "#6E6A83", // Muted Slate Purple
+    "#4D7C8A", // Muted Petrol Blue
+    "#D9B58D", // Muted Peach
+    "#8D7865", // Muted Taupe
   ];
   const [backgroundColor, setBackgroundColor] = useState("");
   const quoteRef = useRef(null);
 
   // Initialize state from localStorage and default values
   useEffect(() => {
-    const storedText =
-      typeof window !== "undefined" ? localStorage.getItem("text") : "";
-    setText(storedText || "");
+    const storedText = localStorage.getItem("text") || "";
+    setText(storedText);
 
     const storedBgColor =
-      typeof window !== "undefined"
-        ? localStorage.getItem("backgroundColor")
-        : backgroundColors[0];
-    setBackgroundColor(storedBgColor || backgroundColors[0]);
+      localStorage.getItem("backgroundColor") || backgroundColors[0];
+    setBackgroundColor(storedBgColor);
 
-    const storedTextColor =
-      typeof window !== "undefined"
-        ? localStorage.getItem("textColor")
-        : textColors[0];
-    setTextColor(storedTextColor || textColors[0]);
-  }, []); // Empty dependency array ensures this effect only runs once on mount
+    const storedTextColor = localStorage.getItem("textColor") || textColors[0];
+    setTextColor(storedTextColor);
+  }, []);
 
   // Save text and colors to localStorage whenever they change
   useEffect(() => {
@@ -126,6 +134,7 @@ export default function App() {
             <p className="text-white">Text</p>
             <input
               type="text"
+              value={text} // Bind the input value to the state
               className="text-white text-opacity-75 px-2 w-80 py-2 bg-transparent border border-zinc-500 outline-none focus:border-white rounded-md"
               onChange={(e) => setText(e.target.value)}
             />
